@@ -8,7 +8,7 @@
 
 import Foundation
 import RxDataSources
-
+/* 使用枚举来实现的，学习了*/
 enum SettingsSection {
     case setting(title: String, items: [SettingsSectionItem])
 }
@@ -33,7 +33,7 @@ enum SettingsSectionItem {
     case acknowledgementsItem(viewModel: SettingCellViewModel)
     case whatsNewItem(viewModel: SettingCellViewModel)
 }
-
+/** 实现 AnimatableSectionModelType ，Item 需要遵守 IdentifiableType 协议， identity 是用来比较 == 的属性 */
 extension SettingsSectionItem: IdentifiableType {
     typealias Identity = String
     var identity: Identity {
@@ -52,7 +52,7 @@ extension SettingsSectionItem: IdentifiableType {
         }
     }
 }
-
+/** 实现 AnimatableSectionModelType ，Item 需要遵守 Equatable 协议， 实现 == 方法*/
 extension SettingsSectionItem: Equatable {
     static func == (lhs: SettingsSectionItem, rhs: SettingsSectionItem) -> Bool {
         return lhs.identity == rhs.identity
