@@ -14,7 +14,7 @@ import RxDataSources
 class SettingsViewModel: ViewModel, ViewModelType {
 
     struct Input {
-        let trigger: Observable<Void>
+        let trigger: Observable<Void> // 传入为 viewWillAppear 和 语言改变
         let selection: Driver<SettingsSectionItem>
     }
 
@@ -64,7 +64,7 @@ class SettingsViewModel: ViewModel, ViewModelType {
             self.cellDisposeBag = DisposeBag()
             var items: [SettingsSection] = []
 
-            if loggedIn.value {
+            if loggedIn.value { // 已登录账号的情况
                 var accountItems: [SettingsSectionItem] = []
                 if let user = self.currentUser {
                     let profileCellViewModel = UserCellViewModel(with: user)
@@ -78,6 +78,7 @@ class SettingsViewModel: ViewModel, ViewModelType {
                 items.append(SettingsSection.setting(title: R.string.localizable.settingsAccountSectionTitle.key.localized(), items: accountItems))
             }
 
+            /**未登录状态，Section 显示作者的 2个开源 repository **/
             if let swiftHubRepository = self.swiftHubRepository.value,
                 let flutterHubRepository = self.flutterHubRepository.value {
                 let swiftHubCellViewModel = RepositoryCellViewModel(with: swiftHubRepository)
