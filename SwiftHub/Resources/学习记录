@@ -1,0 +1,9 @@
+Network 网络请求
+
+provider: SwiftHubAPI
+
+SwiftHubAPI protocol , 定义相关请求数据的方法
+
+RestApi 和 GraphApi 两套请求接口的方式，遵守 SwiftHubAPI protocol，提供方法实现
+
+结合 Moya and ObjectMapper 实现网络请求
